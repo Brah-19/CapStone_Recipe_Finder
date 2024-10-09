@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaArrowLeft, FaYoutube, FaExternalLinkAlt } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 
 export function RecipeDetails({ recipe, onBack }) {
   const ingredients = []
@@ -10,10 +11,15 @@ export function RecipeDetails({ recipe, onBack }) {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className="bg-white rounded-lg shadow-lg p-6"
+    >
       <button
         onClick={onBack}
-        className="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 flex items-center transition-colors duration-200"
+        className="mb-4 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 flex items-center transition-colors duration-200"
       >
         <FaArrowLeft className="mr-2" />
         Back to Results
@@ -23,15 +29,18 @@ export function RecipeDetails({ recipe, onBack }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <h3 className="text-xl font-semibold mb-2 text-blue-600">Ingredients</h3>
-          <ul className="list-disc list-inside space-y-1">
+          <ul className="space-y-1">
             {ingredients.map((ingredient, index) => (
-              <li key={index} className="text-gray-700">{ingredient}</li>
+              <li key={index} className="flex items-center text-gray-700">
+                <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                {ingredient}
+              </li>
             ))}
           </ul>
         </div>
         <div>
           <h3 className="text-xl font-semibold mb-2 text-blue-600">Instructions</h3>
-          <p className="whitespace-pre-line text-gray-700">{recipe.strInstructions}</p>
+          <p className="text-gray-700 whitespace-pre-line">{recipe.strInstructions}</p>
         </div>
       </div>
       {recipe.strYoutube && (
@@ -54,13 +63,13 @@ export function RecipeDetails({ recipe, onBack }) {
             href={recipe.strSource}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:text-blue-800 flex items-center transition-colors duration-200"
+            className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-colors duration-200"
           >
             <FaExternalLinkAlt className="mr-2" />
             View Full Recipe on TheMealDB
           </a>
         </div>
       )}
-    </div>
+    </motion.div>
   )
 }

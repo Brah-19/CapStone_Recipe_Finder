@@ -11,13 +11,13 @@ export function SearchBar({ onSearch }) {
 
   return (
     <form onSubmit={handleSubmit} className="mb-8">
-      <div className="flex shadow-lg rounded-lg overflow-hidden">
+      <div className="flex shadow-lg rounded-lg overflow-hidden transition-all duration-300 focus-within:ring-2 focus-within:ring-blue-400">
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search for a recipe..."
-          className="flex-grow px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-grow px-4 py-3 focus:outline-none"
         />
         <button
           type="submit"

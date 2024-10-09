@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaUtensils, FaGlobeAmericas } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 
 export function RecipeList({ recipes, onSelectRecipe }) {
   if (recipes.length === 0) {
@@ -13,10 +14,13 @@ export function RecipeList({ recipes, onSelectRecipe }) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {recipes.map((recipe) => (
-        <div
+      {recipes.map((recipe, index) => (
+        <motion.div
           key={recipe.idMeal}
-          className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer transition-transform hover:scale-105 hover:shadow-xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: index * 0.1 }}
+          className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transform hover:scale-105 transition-all duration-300"
           onClick={() => onSelectRecipe(recipe)}
         >
           <img src={recipe.strMealThumb} alt={recipe.strMeal} className="w-full h-48 object-cover" />
@@ -31,7 +35,7 @@ export function RecipeList({ recipes, onSelectRecipe }) {
               <p>{recipe.strArea}</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
   )

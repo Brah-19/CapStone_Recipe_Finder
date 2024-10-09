@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FaPaperPlane } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -25,10 +26,15 @@ export function Contact() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-blue-600">Contact Us</h2>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-3xl mx-auto"
+    >
+      <h2 className="text-4xl font-bold mb-6 text-blue-600 text-center">Contact Us</h2>
       <div className="bg-white shadow-lg rounded-lg p-6">
-        <p className="text-gray-700 mb-4">
+        <p className="text-gray-700 mb-4 leading-relaxed">
           Have a question, suggestion, or just want to say hello? We'd love to hear from you! Fill out the form below and we'll get back to you as soon as possible.
         </p>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -71,7 +77,7 @@ export function Contact() {
           <div>
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
             >
               <FaPaperPlane className="mr-2" />
               Send Message
@@ -79,6 +85,6 @@ export function Contact() {
           </div>
         </form>
       </div>
-    </div>
+    </motion.div>
   )
 }

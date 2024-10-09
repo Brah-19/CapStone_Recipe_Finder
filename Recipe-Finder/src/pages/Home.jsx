@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { SearchBar } from '../components/SearchBar'
 import { RecipeList } from '../components/RecipeList'
 import { RecipeDetails } from '../components/RecipeDetails'
+import { motion } from 'framer-motion'
 
 export function Home() {
   const [recipes, setRecipes] = useState([])
@@ -29,23 +30,27 @@ export function Home() {
   }
 
   return (
-    <div>
-      <h2 className="text-3xl font-bold mb-6 text-blue-600">Find Your Perfect Recipe</h2>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <h2 className="text-4xl font-bold mb-6 text-blue-600 text-center">Find Your Perfect Recipe</h2>
       <SearchBar onSearch={handleSearch} />
       {error && (
-        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded" role="alert">
           <p>{error}</p>
         </div>
       )}
       {loading ? (
         <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+          <div className="animate-spin rounded-full h-32 w-32  border-t-2 border-b-2 border-blue-500"></div>
         </div>
       ) : selectedRecipe ? (
         <RecipeDetails recipe={selectedRecipe} onBack={() => setSelectedRecipe(null)} />
       ) : (
         <RecipeList recipes={recipes} onSelectRecipe={setSelectedRecipe} />
       )}
-    </div>
+    </motion.div>
   )
 }
