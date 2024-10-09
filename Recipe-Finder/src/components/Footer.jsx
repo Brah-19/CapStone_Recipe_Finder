@@ -10,7 +10,7 @@ export function Footer() {
             <p className="flex items-center justify-center md:justify-start">
               Made with <FaHeart className="text-red-500 mx-1" /> by SeaBlue Recipes
             </p>
-            <p className="mt-2">&copy; 2023 SeaBlue Recipes. All rights reserved.</p>
+            <p className="mt-2">&copy; 2024 SeaBlue Recipes. All rights reserved.</p>
           </div>
           <div className="flex space-x-4">
             <a href="https://github.com/Brah-19" className="hover:text-blue-200 transition-colors duration-200">
